@@ -1,0 +1,48 @@
+/* Fullscreen black background */
+body {
+    background-color: black; /* Black background */
+    color: #00ff41; /* Bright green text */
+    font-family: 'Courier New', Courier, monospace; /* Classic terminal font */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height */
+    margin: 0; /* No margin */
+    overflow: hidden; /* Prevent scrolling */
+}
+
+/* Main terminal container */
+#terminal {
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    padding: 20px; /* Padding inside the terminal */
+    box-sizing: border-box; /* Include padding in width/height */
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+/* Terminal output */
+#output {
+    white-space: pre-wrap; /* Preserve whitespace */
+    word-wrap: break-word; /* Break long words */
+    line-height: 1.5; /* Line height for readability */
+    text-shadow: 0 0 2px #00ff41; /* Glow effect on text */
+}
+
+/* Input field styling */
+#input {
+    width: 100%; /* Full width */
+    border: none; /* No border */
+    background: transparent; /* Transparent background */
+    color: #00ff41; /* Green text for input */
+    font-family: inherit; /* Use the same font */
+    outline: none; /* No outline */
+    caret-color: #00ff41; /* Green caret for input */
+    position: relative; /* Position relative for cursor */
+}
+
+/* Sound effect (optional) */
+@keyframes blink {
+    50% {
+        opacity: 0; /* Blink effect */
+    }
+}
