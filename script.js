@@ -35,9 +35,17 @@ window.onload = () => {
     bootSequence();
 };
 
+// Function to convert hexadecimal to ASCII
+function hexToAscii(hex) {
+    const str = hex.match(/.{1,4}/g) // Match every 4 characters (2 bytes)
+        .map((h) => String.fromCharCode(parseInt(h, 16))) // Convert to ASCII
+        .join('');
+    return str;
+}
+
 // Password and protected file content
 const password = "1508"; // Define the password
-const protectedFileContent = " &#116;&#104;&#101;&#32;&#99;&#101;&#122;&#97;&#114;&#32;&#105;&#115;&#32;&#112;&#108;&#101;&#97;&#115;&#101;&#100;"; // Hexadecimal for "The cezar is pleased"
+const protectedFileContent = hexToAscii("&#116;&#104;&#101;&#32;&#99;&#101;&#122;&#97;&#114;&#32;&#105;&#115;&#32;&#112;&#108;&#101;&#97;&#115;&#101;&#100;"); // Decoding to ASCII
 
 // Command dictionary
 const commands = {
@@ -81,7 +89,7 @@ input.addEventListener('keydown', (event) => {
 
             // Check if the entered password matches
             if (enteredPassword === password) {
-                output.innerHTML += `\n${protectedFileContent}`; // Show file content
+                output.innerHTML += `\n${protectedFileContent}`; // Show file content as ASCII
             } else {
                 output.innerHTML += `\nAccess denied. Incorrect password.`; // Deny access
             }
@@ -92,7 +100,7 @@ input.addEventListener('keydown', (event) => {
 
         // Handle normal commands
         if (command === 'cat mission_brief.txt') {
-            typeText('Mission Brief: Where images stands still, the key to unlocking the now lies beneath the surface of the forgotten past. Seek the cipher from the depths of the assembly.\n', () => {
+            typeText('Mission Brief: Where images stand still, the key to unlocking the now lies beneath the surface of the forgotten past. Seek the cipher from the depths of the assembly.\n', () => {
                 typeText('Log: [REDACTED] - Initiating Project Overload...\n', () => {
                     output.innerHTML += '\nType "cat project_overlord.txt" to access the locked file.';
                 });
