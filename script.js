@@ -35,17 +35,9 @@ window.onload = () => {
     bootSequence();
 };
 
-// Function to convert hexadecimal to ASCII
-function hexToAscii(hex) {
-    const str = hex.match(/.{1,4}/g) // Match every 4 characters (2 bytes)
-        .map((h) => String.fromCharCode(parseInt(h, 16))) // Convert to ASCII
-        .join('');
-    return str;
-}
-
 // Password and protected file content
 const password = "1508"; // Define the password
-const protectedFileContent = hexToAscii("&#116;&#104;&#101;&#32;&#99;&#101;&#122;&#97;&#114;&#32;&#105;&#115;&#32;&#112;&#108;&#101;&#97;&#115;&#101;&#100;"); // Decoding to ASCII
+const protectedFileContent = "84 104 101 32 67 101 122 97 114 32 65 119 97 105 116 115"; 
 
 // Command dictionary
 const commands = {
@@ -89,7 +81,7 @@ input.addEventListener('keydown', (event) => {
 
             // Check if the entered password matches
             if (enteredPassword === password) {
-                output.innerHTML += `\n${protectedFileContent}`; // Show file content as ASCII
+                output.innerHTML += `\n${protectedFileContent}`; // Show file content as raw HTML entities
             } else {
                 output.innerHTML += `\nAccess denied. Incorrect password.`; // Deny access
             }
